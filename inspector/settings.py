@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     # Third Party Apps
     'django_extensions',
     'django_pygmy',
-    'opbeat.contrib.django',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -51,7 +50,6 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE_CLASSES = [
-    'opbeat.contrib.django.middleware.OpbeatAPMMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -86,7 +84,7 @@ WSGI_APPLICATION = 'inspector.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
-DATABASES = {'default': dj_database_url.config(default='postgres://localhost/ccbv')}
+DATABASES = {'default': dj_database_url.config(default='sqlite:///ccbv.sqlite3')}
 
 
 # Caching
@@ -135,9 +133,3 @@ CBV_SOURCES = {
 
 
 # THIRD PARTY SETTINGS
-# Opbeat
-OPBEAT = {
-    'ORGANIZATION_ID': os.environ.get('OPBEAT_ORGANIZATION_ID'),
-    'APP_ID': os.environ.get('OPBEAT_APP_ID'),
-    'SECRET_TOKEN': os.environ.get('OPBEAT_SECRET_TOKEN'),
-}
